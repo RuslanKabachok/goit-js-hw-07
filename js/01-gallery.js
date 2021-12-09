@@ -20,10 +20,15 @@ const markUp = galleryItems
 
 galleryEl.insertAdjacentHTML('afterbegin', markUp);
 
-const imgEl = document.querySelector('.gallery__link');
-
-const zoomImg = (e) => {
+const onGalleryItemClick = (e) => {
   e.preventDefault();
+  const ref = e.target.dataset.source;
+
+  const instance = basicLightbox.create(`
+    <img src="${ref}" width="800" height="600">
+`);
+
+  instance.show();
 };
 
-galleryEl.addEventListener('click', zoomImg);
+galleryEl.addEventListener('click', onGalleryItemClick);
