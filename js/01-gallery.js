@@ -19,3 +19,11 @@ const markUp = galleryItems
   .join('');
 
 galleryEl.insertAdjacentHTML('afterbegin', markUp);
+
+const imgEl = document.querySelector('.gallery__link');
+
+const zoomImg = (e) => {
+  e.preventDefault();
+};
+
+galleryEl.addEventListener('click', zoomImg);
