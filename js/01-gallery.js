@@ -1,7 +1,14 @@
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
 
-const galleryEl = document.querySelector('.gallery');
+const instance = basicLightbox.create(`
+    <img src="" width="800" height="600">
+`);
+
+const refs = {
+  galleryEl: document.querySelector('.gallery'),
+  image: instance.element().querySelector('img'),
+};
 
 const markUp = galleryItems
   .map((item) => {
@@ -18,17 +25,19 @@ const markUp = galleryItems
   })
   .join('');
 
-galleryEl.insertAdjacentHTML('afterbegin', markUp);
+refs.galleryEl.insertAdjacentHTML('afterbegin', markUp);
 
 const onGalleryItemClick = (e) => {
   e.preventDefault();
-  const ref = e.target.dataset.source;
-
-  const instance = basicLightbox.create(`
-    <img src="${ref}" width="800" height="600">
-`);
-
+  refs.image.src = e.target.dataset.source;
   instance.show();
 };
 
-galleryEl.addEventListener('click', onGalleryItemClick);
+// const onGalleryItemClose = (e) => {
+//   if () {
+
+//   }
+// };
+
+refs.galleryEl.addEventListener('click', onGalleryItemClick);
+// refs.galleryEl.addEventListener('keyDown', onGalleryItemClose);
