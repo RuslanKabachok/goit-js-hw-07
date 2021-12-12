@@ -27,17 +27,18 @@ const markUp = galleryItems
 
 refs.galleryEl.insertAdjacentHTML('afterbegin', markUp);
 
-const onGalleryItemClick = (e) => {
-  e.preventDefault();
-  refs.image.src = e.target.dataset.source;
-  instance.show();
+const closeInstance = (e) => {
+  instance.close();
+  window.removeEventListener('keydown', closeInstance);
 };
 
-// const onGalleryItemClose = (e) => {
-//   if () {
+const onGalleryItemClick = (e) => {
+  e.preventDefault();
 
-//   }
-// };
+  refs.image.src = e.target.dataset.source;
+  instance.show();
+
+  window.addEventListener('keydown', closeInstance);
+};
 
 refs.galleryEl.addEventListener('click', onGalleryItemClick);
-// refs.galleryEl.addEventListener('keyDown', onGalleryItemClose);
