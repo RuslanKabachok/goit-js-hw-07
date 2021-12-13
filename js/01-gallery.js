@@ -28,8 +28,10 @@ const markUp = galleryItems
 refs.galleryEl.insertAdjacentHTML('afterbegin', markUp);
 
 const closeInstance = (e) => {
-  instance.close();
-  window.removeEventListener('keydown', closeInstance);
+  if (e.key === 'Escape') {
+    instance.close();
+    window.removeEventListener('keydown', closeInstance);
+  }
 };
 
 const onGalleryItemClick = (e) => {
